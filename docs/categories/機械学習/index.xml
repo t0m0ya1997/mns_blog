@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>機械学習 on Tomoya Hirakawa</title>
-    <link>https://t0m0ya1997.github.io/blog/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</link>
+    <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</link>
     <description>Recent content in 機械学習 on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>scikit-learnによるStackingの実装</title>
-      <link>https://t0m0ya1997.github.io/blog/post/stacking/</link>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</link>
       <pubDate>Tue, 02 Mar 2021 21:22:08 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/post/stacking/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</guid>
       <description>はじめに 最近、kaggle等の機械学習コンペが流行っていますね。 先日、参加したインターンシップでのコンペもkaggleで出題されるようなお題</description>
     </item>
     
     <item>
       <title>Optuna を使ってみた話</title>
-      <link>https://t0m0ya1997.github.io/blog/post/optuna/</link>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</link>
       <pubDate>Wed, 24 Feb 2021 14:32:00 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/post/optuna/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</guid>
       <description>はじめに 先日、某社の短期インターンシップという名の、数週間にわたる機械学習コンペに参加しておりました。 コンペ初心者だった僕は、ハイパラ調整を</description>
     </item>
     

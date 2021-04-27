@@ -6,14 +6,23 @@
     <description>Recent content in Python on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Wed, 09 Dec 2020 01:36:09 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>最急降下法を画像を例に実感する</title>
-      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/gradient/</link>
-      <pubDate>Wed, 09 Dec 2020 01:36:09 +0900</pubDate>
+      <title>scikit-learnによるStackingの実装</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</link>
+      <pubDate>Tue, 02 Mar 2021 21:22:08 +0900</pubDate>
       
-      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/gradient/</guid>
-      <description>はじめに 深層学習でもよく使われる最適化手法「最急降下法」の原理を紹介し，画像処理に適用してみたという記事です． 最急降下法 そもそも最適化問題と</description>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</guid>
+      <description>はじめに 最近、kaggle等の機械学習コンペが流行っていますね。 先日、参加したインターンシップでのコンペもkaggleで出題されるようなお題</description>
+    </item>
+    
+    <item>
+      <title>Optuna を使ってみた話</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</link>
+      <pubDate>Wed, 24 Feb 2021 14:32:00 +0900</pubDate>
+      
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</guid>
+      <description>はじめに 先日、某社の短期インターンシップという名の、数週間にわたる機械学習コンペに参加しておりました。 コンペ初心者だった僕は、ハイパラ調整を</description>
     </item>
     
   </channel>

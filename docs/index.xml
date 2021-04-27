@@ -6,23 +6,23 @@
     <description>Recent content on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Wed, 09 Dec 2020 01:36:09 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>最急降下法を画像を例に実感する</title>
-      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/gradient/</link>
-      <pubDate>Wed, 09 Dec 2020 01:36:09 +0900</pubDate>
+      <title>scikit-learnによるStackingの実装</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</link>
+      <pubDate>Tue, 02 Mar 2021 21:22:08 +0900</pubDate>
       
-      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/gradient/</guid>
-      <description>はじめに 深層学習でもよく使われる最適化手法「最急降下法」の原理を紹介し，画像処理に適用してみたという記事です． 最急降下法 そもそも最適化問題と</description>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</guid>
+      <description>はじめに 最近、kaggle等の機械学習コンペが流行っていますね。 先日、参加したインターンシップでのコンペもkaggleで出題されるようなお題</description>
     </item>
     
     <item>
-      <title>Hello</title>
-      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/hello/</link>
-      <pubDate>Mon, 07 Dec 2020 17:14:37 +0900</pubDate>
+      <title>Optuna を使ってみた話</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</link>
+      <pubDate>Wed, 24 Feb 2021 14:32:00 +0900</pubDate>
       
-      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/hello/</guid>
-      <description>こんにちは，本日よりこちらのリンクでブログを始めます． KaTeX test $$ \mathcal N(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma}\right). $$</description>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</guid>
+      <description>はじめに 先日、某社の短期インターンシップという名の、数週間にわたる機械学習コンペに参加しておりました。 コンペ初心者だった僕は、ハイパラ調整を</description>
     </item>
     
     <item>
@@ -32,6 +32,24 @@
       
       <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/about/</guid>
       <description>Tomoya HIRAKAWA 高専卒の情報系大学院生． サボテンと同棲しております． Background 2013.4 - 2018.3 久留米高専制御情報工学科 2018.4 - 2020.3 久留米高専専攻科（学士) 2020.4 - current 東京大学大学院新</description>
+    </item>
+    
+    <item>
+      <title>Creative Coding 2020</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/gallery/creativecoding2020/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/gallery/creativecoding2020/</guid>
+      <description>2020年の作品一覧 201224：beginner of creative coding See the Pen VEYRqX by t_hirakawa (@t_hirakawa) on CodePen. 201225：Brownian motion (mono) See the Pen VEYRqX by t_hirakawa (@t_hirakawa) on CodePen. 201226：</description>
+    </item>
+    
+    <item>
+      <title>Creative Coding 2021</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/gallery/creativecoding2021/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/gallery/creativecoding2021/</guid>
+      <description>2021年の作品一覧 210101：base of hotaru See the Pen VEYRqX by t_hirakawa (@t_hirakawa) on CodePen. 210102：Markov word cascade See the Pen VEYRqX by t_hirakawa (@t_hirakawa) on CodePen. 210103：Vertica</description>
     </item>
     
   </channel>

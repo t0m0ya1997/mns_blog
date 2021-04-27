@@ -1,4 +1,37 @@
 <head>
+    <!-- og設定　-->
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:url" content="{{ .Permalink | absURL }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    {{ if .Params.image }}
+        <meta property="og:image" content="{{ .Params.Image | absURL }}">
+        <meta property="og:image:url" content="{{ .Params.Image | absURL }}">
+    {{ else }}
+        <meta property="og:image" content="{{ .Site.Params.og_image | absURL }}">
+        <meta property="og:image:url" content="{{ .Site.Params.og_image | absURL }}">
+    {{ end }}
+    {{ if .Params.description }}
+        <meta property="og:description" content="{{ .Params.description }}">
+    {{ else }}
+        <meta property="og:description" content="{{ .Site.Params.description }}">
+    {{ end }}
+
+    <!-- Twitterカード設定 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="{{ .Title }}">
+    {{ if .Params.image }}
+        <meta property="twitter:image" content="{{ .Params.Image | absURL }}">
+        <meta property="twitter:image:url" content="{{ .Params.Image | absURL }}">
+    {{ else }}
+        <meta property="twitter:image" content="{{ .Site.Params.og_image | absURL }}">
+        <meta property="twitter:image:url" content="{{ .Site.Params.og_image | absURL }}">
+    {{ end }}
+        {{ if .Params.description }}
+        <meta property="twitter:description" content="{{ .Params.description }}">
+    {{ else }}
+        <meta property="twitter:description" content="{{ .Site.Params.description }}">
+    {{ end }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,20 +71,16 @@
             extensions: ["tex2jax.js"],
             jax: ["input/TeX", "output/HTML-CSS"],
             tex2jax: {
-                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
-                processEscapes: true,
-                processEnvironments: true,
-                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                TeX: { equationNumbers: { autoNumber: "AMS" },
-                    extensions: ["AMSmath.js", "AMSsymbols.js"] }
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true
             },
             "HTML-CSS": { availableFonts: ["TeX"] }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
     {{ end }}
-    
+
     <link rel="stylesheet" href="{{ "/layui/css/layui.css" | relURL }}">
     <link rel="stylesheet" href="{{ "/self/css/default.css" | relURL }}">
     <script src=" {{ "/layui/layui.js" | relURL }}"></script>
@@ -65,6 +94,5 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
     <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script>
-
     {{- partial "self-define-head.html" -}}
 </head>

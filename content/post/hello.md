@@ -4,7 +4,7 @@ description: ""
 date: 2020-12-07T17:14:37+09:00
 tags: ["essay"]
 categories: ["blog"]
-draft: false
+draft: true
 ---
 こんにちは，本日よりこちらのリンクでブログを始めます．
 

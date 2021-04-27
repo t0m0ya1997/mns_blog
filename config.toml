@@ -2,6 +2,7 @@ baseURL = "http://mns.k.u-tokyo.ac.jp/~hirakawa/"
 publishDir = "docs"
 title = "Tomoya Hirakawa"
 theme = "erblog"
+googleAnalytics = "G-56Q7GSXL00"
 paginate = 3
 languageCode = "jp"
 DefaultContentLanguage = "jp"
@@ -13,42 +14,51 @@ footnoteReturnLinkContents = "^"
     author = "Tomoya HIRAKAWA"
     badge = "orange"
     quote = "red"
-    notice = "就職活動始めたぽよ。"
-    description = "インドに行きたいブログ。"
+    notice = "Recent: 僕の財布の中身も緊急事態宣言。"
+    description = "インドに行きたい。"
     notice_color = "red"
     index_posts_num = 5
     google_search = true
     math = true
     # logo = "icon.jpg"
-    # logo = "//blog.ertuil.top/avater.png"
+    # logo = "self/img/avater.jpg"
     bio = """
     <h2> Tomoya HIRAKAWA  (1997. 12.16) </h2>
     <p>2013.4 - 2018.3 久留米高専制御情報工学科</p>
     <p>2018.4 - 2020.3 久留米高専専攻科（学士）</p>
-    <p>2020.4 - current 東京大学大学院新領域創成科学研究科</p>
+    <p>2020.4 - Current 東京大学大学院新領域創成科学研究科</p>
     <br />
     <h2>Interest</h2>
     <ul>
-    <li>ベイズ統計・機械学習：現在の研究テーマに関わっています.</li>
-    <li>データ駆動科学：現在の研究テーマに関わっています.</li>
-    <li>信号処理・画像認識：高専時代に研究をしていました.</li>
+    <b>現在の研究テーマ</b>
+    <li>ベイズ統計・機械学習</li>
+    <li>データ駆動科学</li>
+    <b>かじってたテーマ</b>
+    <li>信号処理・画像認識</li>
     </ul>
     <br />
     <h2>Hobby</h2>
     <ul>
-    <li>映画：洋画，邦画問わずの雑食です．『フォレスト・ガンプ』を最近観ました．</li>
-    <li>読書：沢木耕太郎さんの『深夜特急』が好きです．</li>
-    <li>カメラ：元写真部員（高専）です.</li>
+    <li>映画：洋画，邦画問わずの雑食</li>
+    <li>読書：沢木耕太郎さんの『深夜特急』が特に好き</li>
+    <li>カメラ：元写真部@高専</li>
     </ul>
     """
+    og_image = "self/img/thumnail.png"
     #copyright = "Copyright © 2020, Steve Francia and the Hugo Authors; all rights reserved. This page was created by Hugo."
-    copyright = "Copyright © 2020, Tomoya HIRAKAWA, the Hugo Authors, and Steve Francia"
+    copyright = "Copyright © 2020, Tomoya HIRAKAWA, Steve Francia, and the Hugo Authors"
 
 [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
     weight = 10
+
+[[menu.main]]
+    identifier = "gallery"
+    name = "Gallery"
+    url = "/gallery/"
+    weight = 20
 
 # [[menu.main]]
 #     identifier = "zone"
@@ -58,15 +68,21 @@ footnoteReturnLinkContents = "^"
 
 [[menu.footer]]
     identifier = "home"
-    name = "home"
+    name = "Home"
     url = "/"
     weight = 1
+
+[[menu.footer]]
+    identifier = "gallery"
+    name = "Gallery"
+    url = "/gallery/"
+    weight = 2
 
 [[menu.footer]]
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 2
+    weight = 3
 
 [taxonomies]
 category = "categories"

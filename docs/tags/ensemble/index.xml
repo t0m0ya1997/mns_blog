@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ensemble on Tomoya Hirakawa</title>
-    <link>https://t0m0ya1997.github.io/blog/tags/ensemble/</link>
+    <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/ensemble/</link>
     <description>Recent content in Ensemble on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/tags/ensemble/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/ensemble/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>scikit-learnによるStackingの実装</title>
-      <link>https://t0m0ya1997.github.io/blog/post/stacking/</link>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</link>
       <pubDate>Tue, 02 Mar 2021 21:22:08 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/post/stacking/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/stacking/</guid>
       <description>はじめに 最近、kaggle等の機械学習コンペが流行っていますね。 先日、参加したインターンシップでのコンペもkaggleで出題されるようなお題</description>
     </item>
     

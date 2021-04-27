@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>scikit-learn on Tomoya Hirakawa</title>
-    <link>https://t0m0ya1997.github.io/blog/tags/scikit-learn/</link>
+    <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/scikit-learn/</link>
     <description>Recent content in scikit-learn on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Wed, 24 Feb 2021 14:32:00 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Feb 2021 14:32:00 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Optuna を使ってみた話</title>
-      <link>https://t0m0ya1997.github.io/blog/post/optuna/</link>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</link>
       <pubDate>Wed, 24 Feb 2021 14:32:00 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/post/optuna/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/optuna/</guid>
       <description>はじめに 先日、某社の短期インターンシップという名の、数週間にわたる機械学習コンペに参加しておりました。 コンペ初心者だった僕は、ハイパラ調整を</description>
     </item>
     

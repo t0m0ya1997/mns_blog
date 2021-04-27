@@ -1,6 +1,29 @@
 <html>
 <head>
 	<meta name="generator" content="Hugo 0.82.1" />
+    
+    <meta property="og:site_name" content="Tomoya Hirakawa">
+    <meta property="og:title" content="Tomoya Hirakawa">
+    <meta property="og:url" content="http://mns.k.u-tokyo.ac.jp/~hirakawa/">
+    <meta property="og:type" content="website">
+    
+        <meta property="og:image" content="http://mns.k.u-tokyo.ac.jp/~hirakawa/self/img/thumnail.png">
+        <meta property="og:image:url" content="http://mns.k.u-tokyo.ac.jp/~hirakawa/self/img/thumnail.png">
+    
+    
+        <meta property="og:description" content="インドに行きたい。">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Tomoya Hirakawa">
+    
+        <meta property="twitter:image" content="http://mns.k.u-tokyo.ac.jp/~hirakawa/self/img/thumnail.png">
+        <meta property="twitter:image:url" content="http://mns.k.u-tokyo.ac.jp/~hirakawa/self/img/thumnail.png">
+    
+        
+        <meta property="twitter:description" content="インドに行きたい。">
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,6 +43,14 @@
     
 
     
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-56Q7GSXL00"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'G-56Q7GSXL00');
+        </script>
+    
 
     
     
@@ -28,20 +59,16 @@
             extensions: ["tex2jax.js"],
             jax: ["input/TeX", "output/HTML-CSS"],
             tex2jax: {
-                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
-                processEscapes: true,
-                processEnvironments: true,
-                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                TeX: { equationNumbers: { autoNumber: "AMS" },
-                    extensions: ["AMSmath.js", "AMSsymbols.js"] }
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true
             },
             "HTML-CSS": { availableFonts: ["TeX"] }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
     
-    
+
     <link rel="stylesheet" href="/~hirakawa/layui/css/layui.css">
     <link rel="stylesheet" href="/~hirakawa/self/css/default.css">
     <script src=" /~hirakawa/layui/layui.js"></script>
@@ -57,6 +84,9 @@
     <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
 
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script src="js/mysketch.js" type="text/javascript"></script>
     
     <header class="layui-header layui-bg-cyan">
 
@@ -76,6 +106,8 @@
             
                 <li class="layui-nav-item" id="nav_big"><a href="/~hirakawa/about/">About</a></li>
             
+                <li class="layui-nav-item" id="nav_big"><a href="/~hirakawa/gallery/">Gallery</a></li>
+            
         
 
         
@@ -85,13 +117,15 @@
             </a>
 
             <dl class="layui-nav-child">
-                
+                <dd><a href="/">Home</a></dd>
                 <dd><a href="/~hirakawa/post/">Posts</a></dd>
-                
+                <dd><a href="/~hirakawa/gallery/">Gallery</a></dd>
 
                 
                     
                         <dd><a href="/~hirakawa/about/">About</a></dd>
+                    
+                        <dd><a href="/~hirakawa/gallery/">Gallery</a></dd>
                     
                 
             </dl>
@@ -115,7 +149,7 @@ layui.use('element', function(){
     <div class="layui-row self-notice">
         <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 self-notice-text">
             <span style="margin-left: 20px">
-                就職活動始めたぽよ。
+                Recent: 僕の財布の中身も緊急事態宣言。
                 <i class="layui-icon layui-icon-close" style="vertical-align: -1px;margin-left: 20px"></i>   
             </span>
         </div>
@@ -137,7 +171,7 @@ function notice_close() {
         <div class="layui-col-xs12 layui-col-sm4 layui-col-md4 about_left">
             <img class="lazyload about_portrait" data-src="/~hirakawa/self/img/avater.jpg" />
             <h1> Tomoya HIRAKAWA </h1>
-            <h2> インドに行きたいブログ。 </h2>
+            <h2> インドに行きたい。 </h2>
             
             
             
@@ -168,20 +202,22 @@ function notice_close() {
             <h2>    <h2> Tomoya HIRAKAWA  (1997. 12.16) </h2>
     <p>2013.4 - 2018.3 久留米高専制御情報工学科</p>
     <p>2018.4 - 2020.3 久留米高専専攻科（学士）</p>
-    <p>2020.4 - current 東京大学大学院新領域創成科学研究科</p>
+    <p>2020.4 - Current 東京大学大学院新領域創成科学研究科</p>
     <br />
     <h2>Interest</h2>
     <ul>
-    <li>ベイズ統計・機械学習：現在の研究テーマに関わっています.</li>
-    <li>データ駆動科学：現在の研究テーマに関わっています.</li>
-    <li>信号処理・画像認識：高専時代に研究をしていました.</li>
+    <b>現在の研究テーマ</b>
+    <li>ベイズ統計・機械学習</li>
+    <li>データ駆動科学</li>
+    <b>かじってたテーマ</b>
+    <li>信号処理・画像認識</li>
     </ul>
     <br />
     <h2>Hobby</h2>
     <ul>
-    <li>映画：洋画，邦画問わずの雑食です．『フォレスト・ガンプ』を最近観ました．</li>
-    <li>読書：沢木耕太郎さんの『深夜特急』が好きです．</li>
-    <li>カメラ：元写真部員（高専）です.</li>
+    <li>映画：洋画，邦画問わずの雑食</li>
+    <li>読書：沢木耕太郎さんの『深夜特急』が特に好き</li>
+    <li>カメラ：元写真部@高専</li>
     </ul>
     </h2>
         </div>
@@ -197,12 +233,12 @@ function notice_close() {
                     
                     
                             <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
-        <a href="/~hirakawa/post/gradient/">
-            <h2 class="">最急降下法を画像を例に実感する</h2>
+        <a href="/~hirakawa/post/stacking/">
+            <h2 class="">scikit-learnによるStackingの実装</h2>
         </a>
         <h3 style="margin-top:10px; margin-bottom:10px"> 
     <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2020-12-09</span>
+    <span>2021-03-02</span>
 
     
      
@@ -210,12 +246,8 @@ function notice_close() {
     
 
     
-        <a href="/~hirakawa/categories/research/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">research</span>
-        </a>
-    
-        <a href="/~hirakawa/categories/study/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">study</span>
+        <a href="/~hirakawa/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">機械学習</span>
         </a>
     
 
@@ -224,20 +256,8 @@ function notice_close() {
     
 
     
-        <a href="/~hirakawa/tags/gradient-descent/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">gradient descent</span>
-        </a>
-    
-        <a href="/~hirakawa/tags/image-processing/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">image processing</span>
-        </a>
-    
-        <a href="/~hirakawa/tags/%e5%8b%be%e9%85%8d%e6%b3%95/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">勾配法</span>
-        </a>
-    
-        <a href="/~hirakawa/tags/%e7%94%bb%e5%83%8f%e5%87%a6%e7%90%86/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">画像処理</span>
+        <a href="/~hirakawa/tags/ensemble/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Ensemble</span>
         </a>
     
         <a href="/~hirakawa/tags/python/">
@@ -249,19 +269,19 @@ function notice_close() {
 
         <h3>
         	
-				
-			 <a href="/~hirakawa/post/gradient/"><span style="color:#01AAED">Read More</span></a>
+				某機械学習コンペで学んだStackingというアンサンブル学習法についての備忘録です。
+			 <a href="/~hirakawa/post/stacking/"><span style="color:#01AAED">Read More</span></a>
         </h3>
     </blockquote>
 
                     
                             <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
-        <a href="/~hirakawa/post/hello/">
-            <h2 class="">Hello</h2>
+        <a href="/~hirakawa/post/optuna/">
+            <h2 class="">Optuna を使ってみた話</h2>
         </a>
         <h3 style="margin-top:10px; margin-bottom:10px"> 
     <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2020-12-07</span>
+    <span>2021-02-24</span>
 
     
      
@@ -269,8 +289,8 @@ function notice_close() {
     
 
     
-        <a href="/~hirakawa/categories/blog/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">blog</span>
+        <a href="/~hirakawa/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">機械学習</span>
         </a>
     
 
@@ -279,8 +299,20 @@ function notice_close() {
     
 
     
-        <a href="/~hirakawa/tags/essay/">
-            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">essay</span>
+        <a href="/~hirakawa/tags/%e3%83%8f%e3%82%a4%e3%83%91%e3%83%a9%e8%aa%bf%e6%95%b4/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">ハイパラ調整</span>
+        </a>
+    
+        <a href="/~hirakawa/tags/optuna/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Optuna</span>
+        </a>
+    
+        <a href="/~hirakawa/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+        <a href="/~hirakawa/tags/scikit-learn/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">scikit-learn</span>
         </a>
     
     
@@ -288,8 +320,102 @@ function notice_close() {
 
         <h3>
         	
-				
-			 <a href="/~hirakawa/post/hello/"><span style="color:#01AAED">Read More</span></a>
+				某機械学習コンペに参加した際に知った、ハイパラ最適化ツール「Optuna」を使ってみたという記事です。
+			 <a href="/~hirakawa/post/optuna/"><span style="color:#01AAED">Read More</span></a>
+        </h3>
+    </blockquote>
+
+                    
+                
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<div class="layui-fluid recent" >
+    <div class="layui-container">
+        <div class="layui-row recent-inner" >
+            <div class="layui-col-md8 layui-col-sm8 layui-col-xs12">
+                <h1> Gallery</h1>
+                
+                    
+                    
+                            <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+        <a href="/~hirakawa/gallery/creativecoding2021/">
+            <h2 class="">Creative Coding 2021</h2>
+        </a>
+        <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>0001-01-01</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/~hirakawa/categories/art/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">art</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/~hirakawa/tags/p5.js/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">p5.js</span>
+        </a>
+    
+    
+</h3>
+
+        <h3>
+        	
+				2021年の作品一覧
+			 <a href="/~hirakawa/gallery/creativecoding2021/"><span style="color:#01AAED">Read More</span></a>
+        </h3>
+    </blockquote>
+
+                    
+                            <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+        <a href="/~hirakawa/gallery/creativecoding2020/">
+            <h2 class="">Creative Coding 2020</h2>
+        </a>
+        <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>0001-01-01</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/~hirakawa/categories/art/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">art</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/~hirakawa/tags/p5.js/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">p5.js</span>
+        </a>
+    
+    
+</h3>
+
+        <h3>
+        	
+				2020年の作品一覧
+			 <a href="/~hirakawa/gallery/creativecoding2020/"><span style="color:#01AAED">Read More</span></a>
         </h3>
     </blockquote>
 
@@ -313,16 +439,12 @@ function notice_close() {
                 
                     <h1><a href="/~hirakawa/categories">categories</a> </h1>
                     
-                        <a href="/~hirakawa/categories/blog/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">blog</span>
+                        <a href="/~hirakawa/categories/art/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">art</span>
                         </a>
                     
-                        <a href="/~hirakawa/categories/research/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">research</span>
-                        </a>
-                    
-                        <a href="/~hirakawa/categories/study/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">study</span>
+                        <a href="/~hirakawa/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">機械学習</span>
                         </a>
                     
                 
@@ -331,28 +453,28 @@ function notice_close() {
                 
                     <h1><a href="/~hirakawa/tags">tags</a> </h1>
                     
-                        <a href="/~hirakawa/tags/essay/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">essay</span>
+                        <a href="/~hirakawa/tags/ensemble/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">ensemble</span>
                         </a>
                     
-                        <a href="/~hirakawa/tags/gradient-descent/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">gradient-descent</span>
+                        <a href="/~hirakawa/tags/optuna/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">optuna</span>
                         </a>
                     
-                        <a href="/~hirakawa/tags/image-processing/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">image-processing</span>
+                        <a href="/~hirakawa/tags/p5.js/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">p5.js</span>
                         </a>
                     
                         <a href="/~hirakawa/tags/python/">
                             <span class="layui-badge layui-bg-orange" style="margin: 5px">python</span>
                         </a>
                     
-                        <a href="/~hirakawa/tags/%e5%8b%be%e9%85%8d%e6%b3%95/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">勾配法</span>
+                        <a href="/~hirakawa/tags/scikit-learn/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">scikit-learn</span>
                         </a>
                     
-                        <a href="/~hirakawa/tags/%e7%94%bb%e5%83%8f%e5%87%a6%e7%90%86/">
-                            <span class="layui-badge layui-bg-orange" style="margin: 5px">画像処理</span>
+                        <a href="/~hirakawa/tags/%e3%83%8f%e3%82%a4%e3%83%91%e3%83%a9%e8%aa%bf%e6%95%b4/">
+                            <span class="layui-badge layui-bg-orange" style="margin: 5px">ハイパラ調整</span>
                         </a>
                     
                 
@@ -376,7 +498,11 @@ function notice_close() {
         <div class="layui-row">
             
             <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
-                <a href="/~hirakawa/"><p class="footer-url">home</p></a>
+                <a href="/~hirakawa/"><p class="footer-url">Home</p></a>
+            </div>
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <a href="/~hirakawa/gallery/"><p class="footer-url">Gallery</p></a>
             </div>
             
             <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
@@ -388,7 +514,7 @@ function notice_close() {
     
     
     <div class="layui-container">
-        <p class="copyright">Copyright © 2020, Tomoya HIRAKAWA, the Hugo Authors, and Steve Francia</p>
+        <p class="copyright">Copyright © 2020, Tomoya HIRAKAWA, Steve Francia, and the Hugo Authors</p>
     </div>
 </footer>
 
