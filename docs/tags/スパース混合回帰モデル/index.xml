@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>スパース混合回帰モデル on Tomoya Hirakawa</title>
+    <link>https://t0m0ya1997.github.io/blog/tags/%E3%82%B9%E3%83%91%E3%83%BC%E3%82%B9%E6%B7%B7%E5%90%88%E5%9B%9E%E5%B8%B0%E3%83%A2%E3%83%87%E3%83%AB/</link>
+    <description>Recent content in スパース混合回帰モデル on Tomoya Hirakawa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp</language>
+    <lastBuildDate>Tue, 08 Dec 2020 10:24:16 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/tags/%E3%82%B9%E3%83%91%E3%83%BC%E3%82%B9%E6%B7%B7%E5%90%88%E5%9B%9E%E5%B8%B0%E3%83%A2%E3%83%87%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>スパース混合回帰モデル1(混合回帰入門)</title>
+      <link>https://t0m0ya1997.github.io/blog/post/sparsemcmc/</link>
+      <pubDate>Tue, 08 Dec 2020 10:24:16 +0900</pubDate>
+      
+      <guid>https://t0m0ya1997.github.io/blog/post/sparsemcmc/</guid>
+      <description>はじめに 本記事では，現時点（修士１年）で研究している「スパース混合回帰モデル」について解説をします． 「スパース混合回帰モデル」＝「スパース性</description>
+    </item>
+    
+  </channel>
+</rss>

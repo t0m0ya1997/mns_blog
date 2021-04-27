@@ -1,0 +1,474 @@
+<html>
+<head>
+    
+    <meta property="og:site_name" content="Tomoya Hirakawa">
+    <meta property="og:title" content="scikit-learnによるStackingの実装">
+    <meta property="og:url" content="https://t0m0ya1997.github.io/blog/post/stacking/">
+    <meta property="og:type" content="article">
+    
+        <meta property="og:image" content="https://t0m0ya1997.github.io/blog/self/img/thumnail.png">
+        <meta property="og:image:url" content="https://t0m0ya1997.github.io/blog/self/img/thumnail.png">
+    
+    
+        <meta property="og:description" content="某機械学習コンペで学んだStackingというアンサンブル学習法についての備忘録です。">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="scikit-learnによるStackingの実装">
+    
+        <meta property="twitter:image" content="https://t0m0ya1997.github.io/blog/self/img/thumnail.png">
+        <meta property="twitter:image:url" content="https://t0m0ya1997.github.io/blog/self/img/thumnail.png">
+    
+        
+        <meta property="twitter:description" content="某機械学習コンペで学んだStackingというアンサンブル学習法についての備忘録です。">
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tomoya Hirakawa - scikit-learnによるStackingの実装 </title>
+    
+    
+    <meta content="Ensemble, Python, 機械学習" name="keywords">
+    
+    <meta content="Tomoya Hirakawa - 某機械学習コンペで学んだStackingというアンサンブル学習法についての備忘録です。" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-56Q7GSXL00"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'G-56Q7GSXL00');
+        </script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" href="/blog/layui/css/layui.css">
+    <link rel="stylesheet" href="/blog/self/css/default.css">
+    <script src=" /blog/layui/layui.js"></script>
+
+    <link rel="stylesheet" async href="/blog/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/blog/self/css/gallery.css">
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script src="js/mysketch.js" type="text/javascript"></script>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+    
+    <a class="nav-self-logo" href="/blog/">
+        Tomoya Hirakawa
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/blog/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="/blog/about/">About</a></li>
+            
+                <li class="layui-nav-item" id="nav_big"><a href="/blog/gallery/">Gallery</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                <dd><a href="/">Home</a></dd>
+                <dd><a href="/blog/post/">Posts</a></dd>
+                <dd><a href="/blog/gallery/">Gallery</a></dd>
+
+                
+                    
+                        <dd><a href="/blog/about/">About</a></dd>
+                    
+                        <dd><a href="/blog/gallery/">Gallery</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote self-elem-quote-bg-red markdown-body single-title" >
+                    <h1>scikit-learnによるStackingの実装</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-03-02</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">機械学習</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/ensemble/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Ensemble</span>
+        </a>
+    
+        <a href="/blog/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h1 id="はじめに">はじめに</h1>
+<p>最近、kaggle等の機械学習コンペが流行っていますね。
+先日、参加したインターンシップでのコンペもkaggleで出題されるようなお題だったため、kaggleで使われているテクである<code>Stacking</code>を使用させていただきました。
+これまた備忘録となりますが、コードと共に記事にします。</p>
+<h1 id="stackingとは">Stackingとは</h1>
+<p>まずはStackingについて説明します。
+RandomForestといったアルゴリズムは決定木をアンサンブルする手法として知られていますが、Stacking は性質の異なる様々な学習器のアンサンブルとも言えます。</p>
+<p>具体的には、ある問題に対する解法となる学習器を複数（ここでは\(N\)個）用意します。
+すると、\(N\)個の学習器それぞれに、推定値が存在します。
+それら\(N\)個の推定値を「新たな特徴」として、別に準備した１つの学習器で使用します。
+最終的な結果としては１つの学習器の推定値が出力されます。
+言葉のみではわかりづらいため、図に示した例について説明します。</p>
+<p><img src="stacking_example.png" alt=""></p>
+<p>この例では、まず元のデータから、<code>Model_1</code>、<code>Model_2</code>、<code>Model_3</code>、<code>Model_4</code>の学習器を学習させます。
+それらの推定値を<code>Final model</code>という学習器で使用する特徴として、学習させます。
+この例での最終的な推定値は、<code>Estimation value</code>となります。</p>
+<p>ここで、<code>Model_1</code>、<code>Model_2</code>、<code>Model_3</code>、<code>Model_4</code>については、どんなモデルを用いても構いません。
+kaggleの解法なんかをみてみると、<code>LightGBM</code>を大中小と、<code>Neural Network</code>と<code>Catboost</code>を組み合わせたりしていたり。</p>
+<h1 id="実装してみる">実装してみる</h1>
+<p>使用したコードは<a href="stacking.py">こちら</a></p>
+<p>このStackingについては<code>scikit-learn</code>を用いると簡単に実装することができました。
+今回も適当な２値分類問題を解くようなStackingを実装してみましょう。
+今回は、<code>Model_1: RandomForest</code>、<code>Model_2: GradientBoosting</code>、<code>Model_3: Histogram-BasedGradientBoosting</code>、<code>Model_4: AdaBoost</code>とし、<code>Final Model</code>として<code>NeuralNetwork</code>を用いることにします。
+簡単のため、ハイパラ調整は行わず、ライブラリのデフォルト値を使います。</p>
+<p>まずは必要なライブラリのインポートから。
+今回は分類問題を解くということで、簡単に<code>accuracy</code>の評価値をみていきます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+<span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> make_classification
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, StackingClassifier
+<span style="color:#f92672">from</span> sklearn.neural_network <span style="color:#f92672">import</span> MLPClassifier
+
+<span style="color:#75715e"># 並列処理用</span>
+<span style="color:#f92672">import</span> multiprocessing
+cores <span style="color:#f92672">=</span> multiprocessing<span style="color:#f92672">.</span>cpu_count()
+</code></pre></div><p>そして、擬似的な２値分類問題を生成します。
+データ数は<code>500</code>、特徴量次元は<code>64</code>としておきましょう。
+また、訓練用データと検証用データを<code>train_test_split</code>で分割しておきます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X, y <span style="color:#f92672">=</span> make_classification(n_samples <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, n_features <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, n_informative <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, n_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, random_state <span style="color:#f92672">=</span> <span style="color:#ae81ff">2021</span>)
+
+X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, random_state <span style="color:#f92672">=</span> <span style="color:#ae81ff">2021</span>, stratify <span style="color:#f92672">=</span> y)
+</code></pre></div><p>では早速、使っていく４つのモデルを定義します。
+今回使用する<code>StackingClassifier</code>は、各モデルを<code>(名前, モデル)</code>のタプル型を要素とする辞書型で定義してやる必要があります。
+そのため、以下のように<code>models</code>を定義します。</p>
+<p><code>MLPClassifier</code>については、しばしば<code>ConvergenceWarning</code>が出てきちゃうので、反復回数<code>max_iter</code>を増やしています。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">models <span style="color:#f92672">=</span> {
+    (<span style="color:#e6db74">&#34;RandomForest&#34;</span>, RandomForestClassifier()),
+    (<span style="color:#e6db74">&#34;GradientBoosting&#34;</span>, GradientBoostingClassifier()),
+    (<span style="color:#e6db74">&#34;NeuralNetwork&#34;</span>, MLPClassifier(max_iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>)),
+    (<span style="color:#e6db74">&#34;AdaBoost&#34;</span>, AdaBoostClassifier())
+    }
+</code></pre></div><p>まずは、これらのモデルの単体での精度を調べてみます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> name, model <span style="color:#f92672">in</span> models:
+    acc <span style="color:#f92672">=</span> accuracy_score(y_test, model<span style="color:#f92672">.</span>fit(X_train, y_train)<span style="color:#f92672">.</span>predict(X_test))
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Accuracy of&#34;</span>, name, <span style="color:#e6db74">&#34;:&#34;</span>, acc)
+</code></pre></div><p>すると以下のような結果になりました。</p>
+<pre><code>Accuracy of GradientBoosting : 0.79
+Accuracy of AdaBoost : 0.76
+Accuracy of NeuralNetwork : 0.82
+Accuracy of RandomForest : 0.76
+</code></pre><p>それでは、今回のテーマの<code>Stacking</code>を実装します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">stacking <span style="color:#f92672">=</span> StackingClassifier(estimators <span style="color:#f92672">=</span> models, final_estimator <span style="color:#f92672">=</span> MLPClassifier(), n_jobs <span style="color:#f92672">=</span> cores)
+</code></pre></div><p>たった１行でできちゃうんですね…。
+すごい時代になったもんだ、なんて呟いている間に精度を調べてみましょう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">acc <span style="color:#f92672">=</span> accuracy_score(y_test, stacking<span style="color:#f92672">.</span>fit(X_train, y_train)<span style="color:#f92672">.</span>predict(X_test))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Accuracy of Stacking :&#34;</span>, acc)
+</code></pre></div><p>こちらの結果となりました。</p>
+<pre><code>Accuracy of Stacking : 0.83
+</code></pre><h3 id="実験まとめ">実験まとめ</h3>
+<pre><code>Accuracy of GradientBoosting : 0.79
+Accuracy of AdaBoost : 0.76
+Accuracy of NeuralNetwork : 0.82
+Accuracy of RandomForest : 0.76
+------------------------------------
+Accuracy of Stacking : 0.83
+</code></pre><p>確かに、単体のどのモデルよりも高い<code>accuracy</code>が出ているのがわかります。
+各モデルのハイパラ調整をしたらもっと精度が上がりそうですね。</p>
+<p>ハイパラ調整についての記事は<a href="https://t0m0ya1997.github.io/blog/post/optuna/">こちら</a>。</p>
+<h1 id="まとめ">まとめ</h1>
+<p>機械学習コンペでも頻出のスタッキングを実装してみました。
+今回はどの単体モデルの予測精度よりも、上回る結果を得ることができました、
+しかしながら、Stacingを行うことによって精度が落ちてしまうといったケースも存在するようです。</p>
+<p>本記事では分類問題を扱いましたが、回帰問題についても<code>sklearn.ensemble.StackingRegressor</code>を使えば簡単に実装できちゃいます。機械学習コンペでなかなかスコアが上がらない…という方は試してみてはいかがでしょうか。</p>
+<h1 id="補足passthroughについて">補足：passthroughについて</h1>
+<p>実は<code>sklearn</code>の<code>StackingClassifier</code>及び<code>StackingRegressor</code>にはパラメータとして、<code>passthrough</code>というブール値が存在します。
+この<code>passthrough</code>についてですが、図にしてみました。</p>
+<p><img src="stacking_passthrough.png" alt=""></p>
+<p><code>passthrough</code>は元のデータを最終的な学習器が使用するか否かを示すブール値になります。
+<code>True</code>であれば図中の<code>Features</code>から<code>Final Model</code>への矢印は存在し、<code>False</code>なら存在しないことになります。
+どちらが良いとは一概には言えませんが、意味を理解しておいた方が良いパラメータです。</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html">sklearn公式</a></li>
+<li><a href="https://tma15.github.io/blog/2020/03/29/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92scikit-learn%E3%81%A7%E5%AD%A6%E3%81%B6stacking/">機械学習】scikit-learnで学ぶstacking</a></li>
+<li><a href="https://qiita.com/r2en/items/61b3b7fa70d2b65021d0">最新アンサンブル学習SklearnStackingの性能調査(LBGM, RGF, ET, RF, LR, KNNモデルをHeamyとSklearnで比較する)</a></li>
+<li><a href="https://techtech-sorae.com/scikit-learn0-22-0%E3%81%8B%E3%82%89%E5%AE%9F%E8%A3%85%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6/">scikit-learn0.22.0から実装されたスタッキングクラスを試してみた</a></li>
+</ol>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/blog/post/optuna/">
+                                <h3 class="">Optuna を使ってみた話</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-02-24</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">機械学習</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/%e3%83%8f%e3%82%a4%e3%83%91%e3%83%a9%e8%aa%bf%e6%95%b4/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">ハイパラ調整</span>
+        </a>
+    
+        <a href="/blog/tags/optuna/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Optuna</span>
+        </a>
+    
+        <a href="/blog/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+        <a href="/blog/tags/scikit-learn/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">scikit-learn</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="/blog/post/stacking/">
+                        <h3 class="">scikit-learnによるStackingの実装</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-03-02</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">機械学習</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/ensemble/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Ensemble</span>
+        </a>
+    
+        <a href="/blog/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="/blog/post/optuna/">
+                        <h3 class="">Optuna を使ってみた話</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2021-02-24</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/%e6%a9%9f%e6%a2%b0%e5%ad%a6%e7%bf%92/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">機械学習</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/%e3%83%8f%e3%82%a4%e3%83%91%e3%83%a9%e8%aa%bf%e6%95%b4/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">ハイパラ調整</span>
+        </a>
+    
+        <a href="/blog/tags/optuna/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Optuna</span>
+        </a>
+    
+        <a href="/blog/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+        <a href="/blog/tags/scikit-learn/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">scikit-learn</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs6">
+                <h3> Related Sites </h3>
+            </div>
+        </div>
+        <div class="layui-row">
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <a href="/blog/"><p class="footer-url">Home</p></a>
+            </div>
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <a href="/blog/gallery/"><p class="footer-url">Gallery</p></a>
+            </div>
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <a href="/blog/about/"><p class="footer-url">About</p></a>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">Copyright © 2020, Tomoya HIRAKAWA, Steve Francia, and the Hugo Authors</p>
+    </div>
+</footer>
+
+</body>
+</html>

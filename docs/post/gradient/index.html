@@ -1,0 +1,394 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tomoya Hirakawa - 最急降下法を画像を例に実感する </title>
+    
+    
+    <meta content="gradient descent, image processing, 勾配法, 画像処理, Python, research, study" name="keywords">
+    
+    <meta content="Tomoya Hirakawa - はじめに 深層学習でもよく使われる最適化手法「最急降下法」の原理を紹介し，画像処理に適用してみたという記事です． 最急降下法 そもそも最適化問題と" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+                processEscapes: true,
+                processEnvironments: true,
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                TeX: { equationNumbers: { autoNumber: "AMS" },
+                    extensions: ["AMSmath.js", "AMSsymbols.js"] }
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(
+        document.body,
+        {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false}
+            ]
+        });
+    });
+    </script>
+
+    <link rel="stylesheet" href="/blog/layui/css/layui.css">
+    <link rel="stylesheet" href="/blog/self/css/default.css">
+    <script src=" /blog/layui/layui.js"></script>
+
+    <link rel="stylesheet" async href="/blog/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/blog/self/css/gallery.css">
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" integrity="sha256-h2tMEmhemR2IN4wbbdNjj9LaDIjzwk2hralQwfJmBOE=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+    
+    <a class="nav-self-logo" href="/blog/">
+        Tomoya Hirakawa
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/blog/post/">Posts</a></li>
+        
+
+        
+            
+                <li class="layui-nav-item" id="nav_big"><a href="/blog/about/">About</a></li>
+            
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="/blog/post/">Posts</a></dd>
+                
+
+                
+                    
+                        <dd><a href="/blog/about/">About</a></dd>
+                    
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote self-elem-quote-bg-red markdown-body single-title" >
+                    <h1>最急降下法を画像を例に実感する</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-09</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/research/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">research</span>
+        </a>
+    
+        <a href="/blog/categories/study/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">study</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/gradient-descent/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">gradient descent</span>
+        </a>
+    
+        <a href="/blog/tags/image-processing/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">image processing</span>
+        </a>
+    
+        <a href="/blog/tags/%e5%8b%be%e9%85%8d%e6%b3%95/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">勾配法</span>
+        </a>
+    
+        <a href="/blog/tags/%e7%94%bb%e5%83%8f%e5%87%a6%e7%90%86/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">画像処理</span>
+        </a>
+    
+        <a href="/blog/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h1 id="はじめに">はじめに</h1>
+<p>深層学習でもよく使われる最適化手法「最急降下法」の原理を紹介し，画像処理に適用してみたという記事です．</p>
+<h1 id="最急降下法">最急降下法</h1>
+<p>そもそも最適化問題とは，「<strong>与えられた制約の中で，目的関数値を最小化もしくは最大化させる解を求める問題</strong>」のことです．
+ここでいう制約や目的関数は様々で，例えば，「線形等式・不等式の制約下での線形な目的関数の最適化問題」は「<a href="https://ja.wikipedia.org/wiki/%e7%b7%9a%e5%9e%8b%e8%a8%88%e7%94%bb%e6%b3%95" target="_blank">線形計画法</a>(Linear Programming: LP)」と呼ばれたり，「線形等式・不等式の制約下での２次関数で表される目的関数の最適化問題」は「<a href="https://ja.wikipedia.org/wiki/%e4%ba%8c%e6%ac%a1%e8%a8%88%e7%94%bb%e6%b3%95" target="_blank">２次計画法</a>(Quadratic Programming: QP)」と呼ばれたりと様々な問題に分類できます．</p>
+<p>最急降下法は最適化問題を解くための手法(最適化手法)で，そのシンプルさとは裏腹に，深層学習で用いられる<a href="https://ja.wikipedia.org/wiki/%e7%a2%ba%e7%8e%87%e7%9a%84%e5%8b%be%e9%85%8d%e9%99%8d%e4%b8%8b%e6%b3%95" target="_blank">確率的勾配降下法</a>(Stochastic Gradient Descent: SGD)などの様々な最適化手法の基礎となる重要な手法です．</p>
+<p>目的関数を\(f:x\rightarrow y\)とします．
+ここで引数 \(x\in\mathbb R^d\), 返り値 \(y\in\mathbb R\) とします．
+関数 \(f\) の制約なしの最適化問題を考えます．
+「関数 \(f\) を最小にする \(x\) を\(x^<em>\)とする」すなわち
+$$
+x^</em> = \arg\min_x f(x)
+$$
+という問題を考えるわけです．</p>
+<p>このような問題に対して，最急降下法では以下の操作を繰り返すことによって最適解 \(x^*\) を求めます．
+$$
+x^{(n+1)}\leftarrow x^{(n)} - \nu\nabla_x f(x^{(n)})
+$$
+ここで， \(x^{(n)}\) は \(n\) 回目の更新での変数 \(x\) の値を意味しています．
+パラメータ \(\nu\) はステップサイズと呼びます．</p>
+<p>反復ごとに効率的な目的関数の値を小さくするステップサイズ \(\nu\) を決めていく<a href="https://ja.wikipedia.org/wiki/%e7%9b%b4%e7%b7%9a%e6%8e%a2%e7%b4%a2" target="_blank">直線探索</a>の話もするべきなのですが，今回は割愛します．</p>
+<h1 id="画像に対する際急降下法">画像に対する際急降下法</h1>
+<p>さて，最急降下法の説明はここまでにして，実際に使ってみましょう．
+今回は画像 \(x\in\mathbb R^d\) を，何らかの画像 \(t\in\mathbb R^d\) に最急降下法で近づけていくことを考えます．</p>
+<p>今回はシンプルに目的関数を\(x,t\) の２乗誤差を目的関数とし，
+$$
+x^* = \arg\min_x ||t-x||_2^2
+$$
+という問題を考えます．
+目的関数が２次関数であるため，実はこの問題では最急降下法で大域的な最適解を得ることができますが，一般の問題に対しては最急降下法では局所解を求めるアルゴリズムであることに注意してください．
+目的関数の勾配は
+$$
+\nabla_x f(x) = -2(y-x)
+$$
+であるので，最急降下法での更新式は
+$$
+x^{(n+1)}\leftarrow x^{(n)} +2\nu(y-x^{(n)})
+$$
+と導くことができます．</p>
+<p>今回はPython, OpenCV を用いて実装を行いました．</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># import libraries</span>
+<span style="color:#f92672">from</span> tqdm <span style="color:#f92672">import</span> tqdm
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> cv2
+
+<span style="color:#75715e"># 目標とする画像t</span>
+t <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>float32(cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#34;path/to/terget.jpg&#34;</span>))
+<span style="color:#75715e"># 変数x の初期値として乱数を設定</span>
+x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(t<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>], t<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>], t<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">2</span>]) <span style="color:#f92672">*</span> <span style="color:#ae81ff">255</span>
+
+nu <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.005</span>
+
+<span style="color:#75715e"># 動画保存用</span>
+frame_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">24.0</span>
+size <span style="color:#f92672">=</span> (x<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>], x<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>])
+fmt <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoWriter_fourcc(<span style="color:#e6db74">&#39;m&#39;</span>, <span style="color:#e6db74">&#39;p&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;v&#39;</span>)
+writer <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoWriter(<span style="color:#e6db74">&#39;path/to/output.mp4&#39;</span>, fmt, frame_rate, size)
+
+<span style="color:#75715e"># 最急降下法</span>
+<span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> tqdm(range(<span style="color:#ae81ff">10000</span>)):
+    x <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> nu <span style="color:#f92672">*</span> (t <span style="color:#f92672">-</span> x) <span style="color:#75715e"># 更新操作</span>
+    psnr <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>PSNR(x, t) <span style="color:#75715e"># PSNRの算出</span>
+    writer<span style="color:#f92672">.</span>write(np<span style="color:#f92672">.</span>uint8(x))
+    <span style="color:#66d9ef">if</span> psnr <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">35.0</span>: <span style="color:#75715e"># PSNR が 35 以上であればループを抜ける</span>
+        <span style="color:#66d9ef">break</span>
+
+writer<span style="color:#f92672">.</span>release()
+cv2<span style="color:#f92672">.</span>destroyAllWindows()
+</code></pre></div><p>上のコードを実行すると，mp4形式で砂嵐の初期画像 \(x^{(0)}\) から，目標とする画像 \(t\) へ近づいていく動画が保存されます．
+<a href="https://github.com/t0m0ya1997/gradient-descent" target="_blank">デモ</a>からダウンロードしていただくと簡単に実行できるので是非ご覧ください．</p>
+<h1 id="まとめ">まとめ</h1>
+<p>本記事では，最急降下法の紹介を画像の例を通して行いました．
+時間があるときにこの記事自体も更新していきますのでよろしくお願いします．</p>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="/blog/post/gradient/">
+                        <h3 class="">最急降下法を画像を例に実感する</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-09</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/research/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">research</span>
+        </a>
+    
+        <a href="/blog/categories/study/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">study</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/gradient-descent/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">gradient descent</span>
+        </a>
+    
+        <a href="/blog/tags/image-processing/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">image processing</span>
+        </a>
+    
+        <a href="/blog/tags/%e5%8b%be%e9%85%8d%e6%b3%95/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">勾配法</span>
+        </a>
+    
+        <a href="/blog/tags/%e7%94%bb%e5%83%8f%e5%87%a6%e7%90%86/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">画像処理</span>
+        </a>
+    
+        <a href="/blog/tags/python/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">Python</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+                <div style="margin-left: 10px;">
+                    <blockquote class="self-elem-quote self-elem-quote-bg-red" style="background-color:#FFFFFF;margin-top: 10px;">
+                    <a href="/blog/post/hello/">
+                        <h3 class="">Hello</h3>
+                    </a>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2020-12-07</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/blog/categories/blog/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">blog</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/blog/tags/essay/">
+            <span class="layui-badge layui-bg-orange" style="vertical-align: 2px;">essay</span>
+        </a>
+    
+    
+</h3>
+
+                    </blockquote>
+                </div>
+                
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs6">
+                <h3> Related Sites </h3>
+            </div>
+        </div>
+        <div class="layui-row">
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <a href="/blog/"><p class="footer-url">home</p></a>
+            </div>
+            
+            <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <a href="/blog/about/"><p class="footer-url">About</p></a>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">Copyright © 2020, Tomoya HIRAKAWA, the Hugo Authors, and Steve Francia</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>research&#34; on Tomoya Hirakawa</title>
+    <link>https://t0m0ya1997.github.io/blog/categories/research/</link>
+    <description>Recent content in research&#34; on Tomoya Hirakawa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp</language>
+    <lastBuildDate>Tue, 08 Dec 2020 14:00:59 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/categories/research/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>スパース混合回帰モデル1(混合モデル)</title>
+      <link>https://t0m0ya1997.github.io/blog/post/sparsemcmc/1/</link>
+      <pubDate>Tue, 08 Dec 2020 14:00:59 +0900</pubDate>
+      
+      <guid>https://t0m0ya1997.github.io/blog/post/sparsemcmc/1/</guid>
+      <description>はじめに 本シリーズでは，現時点（修士１年）で研究している「スパース混合回帰モデル」について解説をします． 「スパース混合回帰モデル」＝「スパー</description>
+    </item>
+    
+  </channel>
+</rss>

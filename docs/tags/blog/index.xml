@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on Tomoya Hirakawa</title>
+    <link>https://t0m0ya1997.github.io/blog/tags/blog/</link>
+    <description>Recent content in blog on Tomoya Hirakawa</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp</language>
+    <lastBuildDate>Mon, 07 Dec 2020 17:14:37 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello</title>
+      <link>https://t0m0ya1997.github.io/blog/post/hello/</link>
+      <pubDate>Mon, 07 Dec 2020 17:14:37 +0900</pubDate>
+      
+      <guid>https://t0m0ya1997.github.io/blog/post/hello/</guid>
+      <description>こんにちは，本日よりこちらのリンクでブログを始めます．</description>
+    </item>
+    
+  </channel>
+</rss>
