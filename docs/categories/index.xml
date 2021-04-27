@@ -2,26 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Tomoya Hirakawa</title>
-    <link>https://t0m0ya1997.github.io/blog/categories/</link>
+    <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/</link>
     <description>Recent content in Categories on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Tue, 02 Mar 2021 21:22:08 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Dec 2020 01:36:09 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>機械学習</title>
-      <link>https://t0m0ya1997.github.io/blog/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</link>
-      <pubDate>Tue, 02 Mar 2021 21:22:08 +0900</pubDate>
+      <title>research</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/research/</link>
+      <pubDate>Wed, 09 Dec 2020 01:36:09 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/categories/%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/research/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>art</title>
-      <link>https://t0m0ya1997.github.io/blog/categories/art/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>study</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/study/</link>
+      <pubDate>Wed, 09 Dec 2020 01:36:09 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/categories/art/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/study/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/blog/</link>
+      <pubDate>Mon, 07 Dec 2020 17:14:37 +0900</pubDate>
+      
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/blog/</guid>
       <description></description>
     </item>
     

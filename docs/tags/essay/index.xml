@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>essay on Tomoya Hirakawa</title>
-    <link>https://t0m0ya1997.github.io/blog/tags/essay/</link>
+    <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/essay/</link>
     <description>Recent content in essay on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Mon, 07 Dec 2020 17:14:37 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/tags/essay/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Dec 2020 17:14:37 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/tags/essay/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello</title>
-      <link>https://t0m0ya1997.github.io/blog/post/hello/</link>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/hello/</link>
       <pubDate>Mon, 07 Dec 2020 17:14:37 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/post/hello/</guid>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/hello/</guid>
       <description>こんにちは，本日よりこちらのリンクでブログを始めます． KaTeX test $$ \mathcal N(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma}\right). $$</description>
     </item>
     

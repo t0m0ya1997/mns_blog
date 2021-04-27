@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>study on Tomoya Hirakawa</title>
-    <link>https://t0m0ya1997.github.io/blog/categories/study/</link>
+    <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/study/</link>
     <description>Recent content in study on Tomoya Hirakawa</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp</language>
-    <lastBuildDate>Tue, 08 Dec 2020 14:00:59 +0900</lastBuildDate><atom:link href="https://t0m0ya1997.github.io/blog/categories/study/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Dec 2020 01:36:09 +0900</lastBuildDate><atom:link href="http://mns.k.u-tokyo.ac.jp/~hirakawa/categories/study/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>スパース混合回帰モデル1(混合モデル)</title>
-      <link>https://t0m0ya1997.github.io/blog/post/sparsemcmc/1/</link>
-      <pubDate>Tue, 08 Dec 2020 14:00:59 +0900</pubDate>
+      <title>最急降下法を画像を例に実感する</title>
+      <link>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/gradient/</link>
+      <pubDate>Wed, 09 Dec 2020 01:36:09 +0900</pubDate>
       
-      <guid>https://t0m0ya1997.github.io/blog/post/sparsemcmc/1/</guid>
-      <description>はじめに 本シリーズでは，現時点（修士１年）で研究している「スパース混合回帰モデル」について解説をします． 「スパース混合回帰モデル」＝「スパー</description>
+      <guid>http://mns.k.u-tokyo.ac.jp/~hirakawa/post/gradient/</guid>
+      <description>はじめに 深層学習でもよく使われる最適化手法「最急降下法」の原理を紹介し，画像処理に適用してみたという記事です． 最急降下法 そもそも最適化問題と</description>
     </item>
     
   </channel>
