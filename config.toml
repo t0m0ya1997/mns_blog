@@ -46,7 +46,7 @@ footnoteReturnLinkContents = "^"
     """
     og_image = "self/img/thumnail.png"
     #copyright = "Copyright © 2020, Steve Francia and the Hugo Authors; all rights reserved. This page was created by Hugo."
-    copyright = "Copyright © 2020, Tomoya HIRAKAWA, Steve Francia, and the Hugo Authors"
+    copyright = "Copyright © 2020, Tomoya HIRAKAWA"
 
 [[menu.main]]
     identifier = "about"
